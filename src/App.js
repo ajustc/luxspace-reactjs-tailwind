@@ -1,9 +1,4 @@
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  Switch,
-} from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import Details from "./pages/Details";
 import Cart from "./pages/Cart";
@@ -15,13 +10,11 @@ function App() {
     <div className="App">
       <Router>
         <Routes>
-          <Switch>
-            <Route exact path="/" element={<HomePage />} />
-            <Route path="/categories/:idc" element={<Details />} />
-            <Route path="/cart" element={<Cart />} />
-            <Route path="/congratulations" element={<Congratulations />} />
-            <Route path="*" element={<NotFound />} />
-          </Switch>
+          <Route exact path="/" element={<HomePage />} />
+          <Route path="/categories/:idc" element={<Details />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/congratulations" element={<Congratulations />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </Router>
     </div>
