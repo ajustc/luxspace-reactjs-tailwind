@@ -11,7 +11,7 @@ function App() {
       <Router>
         <Routes>
           <Route exact path="/" element={<HomePage />} />
-          <Route path="/categories/:idc" element={<Details />} />
+          <Route path="/categories/:idc/*" element={<Details />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/congratulations" element={<Congratulations />} />
           <Route path="*" element={<NotFound />} />
