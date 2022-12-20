@@ -3,7 +3,6 @@ import propTypes from "prop-types";
 import { Link } from "react-router-dom";
 
 export default function Breadcrumbs({ list }) {
-  console.log("test", list);
   return (
     <section className="bg-gray-100 py-8 px-4">
       <div className="container mx-auto">

@@ -126,6 +126,8 @@ a.cart svg g circle.dot {
 
 a.cart.cart-filled svg g circle.dot {
   @apply block;
+  --tw-bg-opacity: 1;
+  color: rgb(249 202 218 / var(--tw-bg-opacity));
 }
 
 button[disabled] {

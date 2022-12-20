@@ -39,7 +39,6 @@ export default function Carousel({ children, refContainer }) {
             (cardCount - itemToShow + isMobile) *
             cardSize
           )}px`;
-          console.log({ reDragHandler: refDragHandler.current.style.left });
 
           setIndex(cardCount - itemToShow);
         } else if (index === cardCount || index === cardCount - 1) {
@@ -100,8 +99,6 @@ export default function Carousel({ children, refContainer }) {
     (e) => {
       e = e || window.event;
       e.preventDefault();
-
-      console.log({ onDragEnd: e.type });
 
       posFinal.current = refDragHandler.current.offsetLeft;
 
