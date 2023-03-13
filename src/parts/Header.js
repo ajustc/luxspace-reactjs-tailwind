@@ -1,31 +1,31 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useGlobalContext } from './../helpers/hooks/useGlobalContext';
+import { useGlobalContext } from "./../helpers/hooks/useGlobalContext";
 
-import {ReactComponent as IconCart} from './../assets/images/icon-cart.svg'
+import { ReactComponent as IconCart } from "./../assets/images/icon-cart.svg";
 
 export default function Header({ theme, position }) {
-  const [toggleMainMenu, setToggleMainMenu] = React.useState(false)
-  const [isCartChanged, setIsCartChanged] = React.useState(false)
+  const [toggleMainMenu, setToggleMainMenu] = React.useState(false);
+  const [isCartChanged, setIsCartChanged] = React.useState(false);
   const { state } = useGlobalContext();
 
-  const prevCart = React.useRef(state?.cart || {})
+  const prevCart = React.useRef(state?.cart || {});
 
   React.useLayoutEffect(() => {
     if (prevCart !== state.cart) {
-      prevCart.current = state?.cart || {}
-      setIsCartChanged(true)
+      prevCart.current = state?.cart || {};
+      setIsCartChanged(true);
       setTimeout(() => {
-        setIsCartChanged(false)
+        setIsCartChanged(false);
       }, 550);
     }
-  
+
     // return () => {
     //   second
     // };
-  }, [state.cart])
+  }, [state.cart]);
   return (
-    <header className={[position, "w-full z-20 px-4"].join(" ")}>
+    <header className={[position, "w-full z-40 px-4"].join(" ")}>
       <div className="container mx-auto py-5">
         <div className="flex flex-stretch items-center">
           <div className="w-56 items-center flex">
@@ -39,8 +39,12 @@ export default function Header({ theme, position }) {
           <div className="w-full"></div>
           <div className="w-auto">
             <ul
-              className="fixed bg-white inset-0 flex flex-col invisible items-center justify-center opacity-0 md:visible md:flex-row md:bg-transparent md:relative md:opacity-100 md:flex md:items-center"
-              id="menu"
+              className={[
+                "fixed bg-white inset-0 flex flex-col items-center justify-center opacity-0 md:visible md:flex-row md:bg-transparent md:relative md:opacity-100 md:flex md:items-center",
+                toggleMainMenu
+                  ? "opacity-100 z-30 visible"
+                  : "invisible opacity-0",
+              ].join(" ")}
             >
               <li className="mx-3 py-6 md:py-0">
                 <Link
@@ -49,7 +53,7 @@ export default function Header({ theme, position }) {
                     "hover:underline",
                     theme === "white"
                       ? "text-black md:text-white"
-                      : "text-white md:text-black",
+                      : "text-black md:text-black",
                   ].join(" ")}
                 >
                   Showcase
@@ -62,7 +66,7 @@ export default function Header({ theme, position }) {
                     "hover:underline",
                     theme === "white"
                       ? "text-black md:text-white"
-                      : "text-white md:text-black",
+                      : "text-black md:text-black",
                   ].join(" ")}
                 >
                   Catalog
@@ -75,7 +79,7 @@ export default function Header({ theme, position }) {
                     "hover:underline",
                     theme === "white"
                       ? "text-black md:text-white"
-                      : "text-white md:text-black",
+                      : "text-black md:text-black",
                   ].join(" ")}
                 >
                   Delivery
@@ -88,7 +92,7 @@ export default function Header({ theme, position }) {
                     "hover:underline",
                     theme === "white"
                       ? "text-black md:text-white"
-                      : "text-white md:text-black",
+                      : "text-black md:text-black",
                   ].join(" ")}
                 >
                   Rewards
@@ -99,10 +103,15 @@ export default function Header({ theme, position }) {
           <div className="w-auto">
             <ul className="items-center flex">
               <li className="ml-6 block md:hidden">
-                <Link
-                  id="menu-toggler"
-                  to="/cart"
-                  className="relative flex z-50 items-center justify-center w-8 h-8 text-black md:text-black focus:outline-none"
+                <button
+                  className={[
+                    "flex z-50 items-center justify-center w-8 h-8 text-black md:text-black focus:outline-none",
+                    toggleMainMenu ? "fixed top-0 right-0" : "relative",
+                    theme === "white"
+                      ? "text-black md:text-white"
+                      : "text-black md:text-black"
+                  ].join(" ")}
+                  onClick={() => setToggleMainMenu((prev) => !prev)}
                 >
                   <svg
                     className="fill-current"
@@ -114,7 +123,7 @@ export default function Header({ theme, position }) {
                     <path d="M15.9773 7.68802H1.04219C0.466585 7.68802 0 8.01698 0 8.42281C0 8.82864 0.466668 9.1576 1.04219 9.1576H15.9773C16.5529 9.1576 17.0195 8.82864 17.0195 8.42281C17.0195 8.01692 16.5529 7.68802 15.9773 7.68802Z" />
                     <path d="M15.9773 14.9147H1.04219C0.466585 14.9147 0 15.2437 0 15.6495C0 16.0553 0.466668 16.3843 1.04219 16.3843H15.9773C16.5529 16.3843 17.0195 16.0553 17.0195 15.6495C17.0195 15.2436 16.5529 14.9147 15.9773 14.9147Z" />
                   </svg>
-                </Link>
+                </button>
               </li>
               <li className="ml-6">
                 <Link
@@ -124,12 +133,14 @@ export default function Header({ theme, position }) {
                     theme === "white"
                       ? "text-white md:text-black"
                       : "text-black md:text-white",
-                      state.cart && Object.keys(state.cart).length > 0 ? "cart-filled" : "",
-                      isCartChanged ? "animate-bounce" : ''
+                    state.cart && Object.keys(state.cart).length > 0
+                      ? "cart-filled"
+                      : "",
+                    isCartChanged ? "animate-bounce" : "",
                   ].join(" ")}
                   href="cart.html"
                 >
-                  <IconCart/>
+                  <IconCart />
                 </Link>
               </li>
             </ul>

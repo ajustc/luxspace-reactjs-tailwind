@@ -4,14 +4,13 @@ import { Link } from "react-router-dom";
 
 import Header from "./../parts/Header";
 import Breadcrumb from "./../components/Breadcrumbs/index";
-import ProductDetails from "./../parts/Details/ProductDetails";
-import Suggestions from "./../parts/Details/Suggestions";
 import Sitemap from "./../parts/Sitemap";
 import Footer from "./../parts/Footer";
+import Document from './../parts/Document';
 
 export default function Congratulations() {
   return (
-    <>
+    <Document>
       <Header theme="black" position />
       <Breadcrumb
         list={[
@@ -20,22 +19,22 @@ export default function Congratulations() {
         ]}
       />
 
-      <section class="">
-        <div class="container mx-auto min-h-screen">
-          <div class="flex flex-col items-center justify-center">
-            <div class="w-full md:w-4/12 text-center">
+      <section className="">
+        <div className="container mx-auto min-h-screen">
+          <div className="flex flex-col items-center justify-center">
+            <div className="w-full md:w-4/12 text-center">
               <img
                 src="/images/content/illustration-success.png"
                 alt="congrats illustration"
               />
-              <h2 class="text-3xl font-semibold mb-6">Ah yes it’s success!</h2>
-              <p class="text-lg mb-12">
+              <h2 className="text-3xl font-semibold mb-6">Ah yes it’s success!</h2>
+              <p className="text-lg mb-12">
                 Furniture yang anda beli akan kami kirimkan saat ini juga so now
                 please sit tight and be ready for it
               </p>
               <Link
                 to="/"
-                class="text-gray-900 bg-red-200 focus:outline-none w-full py-3 rounded-full text-lg focus:text-black transition-all duration-200 px-8 cursor-pointer"
+                className="text-gray-900 bg-red-200 focus:outline-none w-full py-3 rounded-full text-lg focus:text-black transition-all duration-200 px-8 cursor-pointer"
               >
                 Back to Shop
               </Link>
@@ -46,6 +45,6 @@ export default function Congratulations() {
 
       <Sitemap />
       <Footer />
-    </>
+    </Document>
   );
 }
